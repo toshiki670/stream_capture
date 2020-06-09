@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "stream_capture"
+require "pry"
+
+Pry.start
