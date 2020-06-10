@@ -21,8 +21,40 @@ Or install it yourself as:
     $ gem install stream_capture
 
 ## Usage
+1. First, `require 'stream_capture'`
 
-TODO: Write usage instructions here
+### as Module (include)
+```
+class YourClass
+  include StreamCapture
+end
+
+klass = YourClass.new
+
+result = klass.stream_both do
+  puts "result stdout"
+  warn "result stderr"
+  exit 0
+end
+
+p result
+>> result stdout
+>> result stderr
+>> 0
+```
+### as Module method
+```
+result = StreamCapture.stream_both do
+  puts "result stdout"
+  warn "result stderr"
+  exit 0
+end
+
+p result
+>> result stdout
+>> result stderr
+>> 0
+```
 
 ## Development
 
