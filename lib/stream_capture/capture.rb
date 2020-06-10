@@ -1,0 +1,34 @@
+# frozen_string_literal: true
+
+require 'stringio'
+
+module StreamCapture
+  class Capture # :nodoc:
+    def stdout(&block)
+      capture(:stdout, &block)
+    end
+
+    def stderr(&block)
+      capture(:stderr, &block)
+    end
+
+    private
+
+    # rubocop:disable Security/Eval, Metrics/MethodLength
+    def capture(stream)
+      raise StreamCapture::NoBlockExistsError unless block_given?
+
+      stream = stream.to_s
+      binding.eval("$#{stream} = StringIO.new", __FILE__, __LINE__)
+      begin
+        yield
+      rescue SystemExit => e
+        binding.eval("$#{stream}.puts #{e.status}", __FILE__, __LINE__)
+      end
+      binding.eval("$#{stream}", __FILE__, __LINE__).string
+    ensure
+      binding.eval("$#{stream} = #{stream.upcase}", __FILE__, __LINE__)
+    end
+    # rubocop:enable Security/Eval, Metrics/MethodLength
+  end
+end
