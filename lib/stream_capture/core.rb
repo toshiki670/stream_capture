@@ -21,21 +21,39 @@ module StreamCapture
 
     private
 
-    # rubocop:disable Security/Eval, Metrics/MethodLength
-    def capture(stream, string_io = StringIO.new)
+    def capture(stream, string_io = StringIO.new, &block)
       raise StreamCapture::NoBlockExistsError unless block_given?
 
       stream = stream.to_s
-      binding.eval("$#{stream} = string_io", __FILE__, __LINE__)
+      set_stream(stream, string_io)
+      capture_yield(stream, &block)
+    ensure
+      reset_stream(stream)
+    end
+
+    def capture_yield(stream)
       begin
         yield
       rescue SystemExit => e
-        binding.eval("$#{stream}.puts #{e.status}", __FILE__, __LINE__)
+        get_stream(stream).puts e.status
       end
-      binding.eval("$#{stream}", __FILE__, __LINE__).string
-    ensure
-      binding.eval("$#{stream} = #{stream.upcase}", __FILE__, __LINE__)
+      get_stream(stream).string
     end
-    # rubocop:enable Security/Eval, Metrics/MethodLength
+
+    def set_stream(stream, io)
+      self.eval("$#{stream} = io", binding)
+    end
+
+    def get_stream(stream)
+      self.eval("$#{stream}", binding)
+    end
+
+    def reset_stream(stream)
+      self.eval("$#{stream} = #{stream.upcase}", binding)
+    end
+
+    def eval(expr, bind)
+      bind.eval(expr, __FILE__, __LINE__)
+    end
   end
 end
