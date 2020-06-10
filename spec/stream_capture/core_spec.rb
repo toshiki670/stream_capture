@@ -4,8 +4,8 @@ require 'spec_helper'
 
 # rubocop:disable Metrics/BlockLength
 
-RSpec.describe StreamCapture::Capture do
-  let(:instance) { StreamCapture::Capture.new }
+RSpec.describe StreamCapture::Core do
+  let(:instance) { StreamCapture::Core.new }
 
   describe '#stdout' do
     describe 'Success' do

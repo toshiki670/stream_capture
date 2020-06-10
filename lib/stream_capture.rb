@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'stream_capture/capture'
+require 'stream_capture/core'
 require 'stream_capture/version'
 
 module StreamCapture

@@ -3,7 +3,7 @@
 require 'stringio'
 
 module StreamCapture
-  class Capture # :nodoc:
+  class Core # :nodoc:
     def stdout(&block)
       capture(:stdout, &block)
     end
