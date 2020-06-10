@@ -3,6 +3,7 @@
 require 'stream_capture/core'
 require 'stream_capture/version'
 
+# Stream capture
 module StreamCapture
   class NoBlockExistsError < StandardError; end
 
