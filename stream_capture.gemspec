@@ -9,7 +9,9 @@ Gem::Specification.new do |spec|
   spec.email         = ['toshiki.dev@protonmail.ch']
 
   spec.summary       = 'Capture stdout and stderr'
-  spec.description   = 'Capture stdout and stderr'
+  spec.description   = <<-'DESC'
+  This module capture stdout and stderr
+  DESC
   spec.homepage      = 'https://github.com/toshiki670/stream_capture'
   spec.license       = 'MIT'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.7.0')
