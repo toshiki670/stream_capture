@@ -31,7 +31,7 @@ end
 
 klass = YourClass.new
 
-result = klass.stream_both do
+result = klass.capture_std_both do
   puts "result stdout"
   warn "result stderr"
   exit 0
@@ -44,7 +44,7 @@ p result
 ```
 ### as Module method
 ```
-result = StreamCapture.stream_both do
+result = StreamCapture.std_both do
   puts "result stdout"
   warn "result stderr"
   exit 0
