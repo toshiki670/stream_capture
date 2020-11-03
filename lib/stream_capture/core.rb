@@ -63,15 +63,15 @@ module StreamCapture
     end
 
     def set_stream(stream, io)
-      self.eval("$#{stream} = io", binding)
+      self.eval("$#{stream} = io", binding)               # $stdout = io
     end
 
     def get_stream(stream)
-      self.eval("$#{stream}", binding)
+      self.eval("$#{stream}", binding)                    # $stdout
     end
 
     def reset_stream(stream)
-      self.eval("$#{stream} = #{stream.upcase}", binding)
+      self.eval("$#{stream} = #{stream.upcase}", binding) # $stdout = STDOUT
     end
 
     def eval(expr, bind)
