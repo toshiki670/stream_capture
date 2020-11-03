@@ -29,29 +29,29 @@ require 'stream_capture/version'
 module StreamCapture
   class NoBlockExistsError < StandardError; end
 
-  def capture_stdout(*args, &block)
-    StreamCapture.stdout(*args, &block)
+  def capture_stdout(...)
+    StreamCapture.stdout(...)
   end
 
-  def capture_stderr(*args, &block)
-    StreamCapture.stderr(*args, &block)
+  def capture_stderr(...)
+    StreamCapture.stderr(...)
   end
 
-  def capture_std_both(*args, &block)
-    StreamCapture.std_both(*args, &block)
+  def capture_std_both(...)
+    StreamCapture.std_both(...)
   end
 
   class << self
-    def stdout(*args, &block)
-      StreamCapture::Core.new.stdout(*args, &block)
+    def stdout(...)
+      StreamCapture::Core.new.stdout(...)
     end
 
-    def stderr(*args, &block)
-      StreamCapture::Core.new.stderr(*args, &block)
+    def stderr(...)
+      StreamCapture::Core.new.stderr(...)
     end
 
-    def std_both(*args, &block)
-      StreamCapture::Core.new.std_both(*args, &block)
+    def std_both(...)
+      StreamCapture::Core.new.std_both(...)
     end
   end
 end
