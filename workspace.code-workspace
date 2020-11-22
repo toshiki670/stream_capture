@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"remoteAuthority": "wsl+ubuntu-20.04",
+	"settings": {
+		"files.autoSave": "afterDelay",
+		"files.autoSaveDelay": 1000
+	}
+}
